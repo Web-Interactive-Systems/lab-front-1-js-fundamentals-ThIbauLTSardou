@@ -16,32 +16,47 @@ const functions = {
   },
 
   executeAfterDelay(callback, delay) {
-    // use setTimeout
+    setTimeout(callback, delay) 
   },
 
-  executeInOrder(callback1, callback2) {},
+  executeInOrder(callback1, callback2) {
+    setTimeout(callback1)
+    setTimeout(callback2) 
+  },
 
-  stopInterval(intervalId, callback) {},
+  stopInterval(intervalId, callback) {
+    clearInterval(intervalId)
+    callback()
+  },
 
   executePromise(callback) {
-    const promise = new Promise((resolve) => {
-      const result = {};
-      resolve(result);
-    });
+    const reponse = ({status : true, value : 'foo'})
 
-    setImmediate(() => {
-      promise.then();
-    });
+
+    /*const p = new Promise((resolve) =>{
+      resolve(reponse)
+    })
+
+    p.then((data) => {
+      callback(data)
+    })    */
+
+    Promise.resolve(reponse).then((data)=>{
+      callback(data)
+    })
+
   },
 
-  executePromises(callback) {
+  async executePromises(callback) {
     const promises = [
-      new Promise((resolve) => setTimeout(() => resolve('second'), 1000)),
-      new Promise((resolve) => setTimeout(() => resolve('third'), 500)),
-      new Promise((resolve) => setTimeout(() => resolve('first'), 250)),
+      new Promise((resolve) => setTimeout(() => resolve('first'), 1000)),
+      new Promise((resolve) => setTimeout(() => resolve('second'), 500)),
+      new Promise((resolve) => setTimeout(() => resolve('third'), 250)),
     ];
 
-    Promise.all(promises).then(callback);
+    const data = await Promise.all(promises);
+    callback(data)
+
   },
 };
 

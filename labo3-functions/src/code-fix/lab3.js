@@ -4,15 +4,32 @@ const functions = {
   // Computes the total order of a command
   // Rule: if total order is > 1000 the shipping is free
   orderTotal(order) {
-    // const totalNormalItems = order.items...;
-    // const shippingItem = order.items...;
-    // const shipping = ...;
-    return 0;
+    
+    let total = 0
+
+    order.items.forEach(element => {
+      if (element.quantity && element.price){
+        total += element.price * element.quantity
+      }
+
+    });
+    
+    if (total <= 1000){
+      total += 40
+    }
+    console.log('total', total)
+    return total;
   },
 
-  addPositiveNumbers(array) {
+  addPositive(array) {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
     const sum = 0;
+
+    array.forEach((e) => {
+      if (e > 0){
+        sum += e
+      }
+    })
     return sum;
   },
 

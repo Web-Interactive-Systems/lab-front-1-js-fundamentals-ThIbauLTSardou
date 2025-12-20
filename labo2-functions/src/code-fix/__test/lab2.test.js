@@ -129,7 +129,7 @@ describe("Test of Functions —lab2", () => {
   });
 
   test("should return the index of the first occurrence of the specified element", () => {
-    const arr = [1, 2, 3, 4, 5];
+    const arr = [1, 2, 3, 4, 5, 3];
     const index = functions.helper8(arr, 3);
     expect(index).toEqual(2);
   });
