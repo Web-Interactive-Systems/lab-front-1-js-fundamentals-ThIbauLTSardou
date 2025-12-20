@@ -37,6 +37,7 @@ describe('Test of Functions —lab1', () => {
     expect(() => functions.checkForBadWords('Oh hi!')).not.toThrow(Error);
   });
 
+  //
   it('returns Monday as the first day of the week', () => {
     expect(functions.nameOfWeekDay(0)).toBe('Monday');
   });
@@ -57,6 +58,8 @@ describe('Test of Functions —lab1', () => {
 
   it('counter counts in increments of one', () => {
     const counter = functions.createCounterFunction(0);
+
+    
     let count = counter();
     count = counter();
     count = counter();

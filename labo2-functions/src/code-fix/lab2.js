@@ -4,41 +4,73 @@ const functions = {
   // This function takes an array of numbers and returns a new array with each number squared.
   squareNumbers(numbers) {
     // square numbers;
-    const squared = numbers;
-    return squared;
+    const squared = (n) => n*n;
+    return numbers.map(squared);
   },
 
   // This function takes an array of strings and returns a new array with only the strings that contain the letter 'a'.
   filterStrings(strings) {
     // filter
-    const filteredStrings = strings;
+    const filteredStrings = []
+
+    strings.forEach(element => {
+      if (element.includes('a')){
+        filteredStrings.push(element)
+      }
+    });
     return filteredStrings;
+
+
+    //const strHasA = (word) => word.toLowerCase().includes('a')
+    //return strings.filter(strHasA)
+
   },
 
   // This function takes an array of numbers and returns the sum of all the numbers in the array.
   sumReduceNumbers(numbers) {
-    const sum = 0;
+    let sum = 0;
+
+    function add (e){
+      sum = sum + e
+    }
+
+    numbers.forEach(add)
+    //numbers.forEach(element => {
+      //sum += element
+    //});
+    //console.log('somme des chiffres', sum)
+
     return sum;
   },
 
   // removes last element of an array and returns it
   helper1(array) {
-    return array;
+    
+    return array.pop();
   },
 
   // add one element to an array
   helper2(arr, newOne) {
-    return newOne;
+    //console.log(arr)
+    //let tab = []
+    //tab.push(newOne)
+
+    
+     arr.push(newOne);
+     console.log('tab', arr)
+
+     return arr
   },
 
   // removes first element from an array and returns a new array
   helper3(arr) {
-    return arr;
+    const first = arr.shift()
+    return first;
   },
 
   // add elements to the top of an array
   helper4(arr, ...elements) {
-    return [];
+    return [...elements, ...arr];
   },
 
 
@@ -54,22 +86,49 @@ const functions = {
 
   // concat two arrays
   helper7(arr1, arr2) {
-    return arr1;
+    return arr1.concat(arr2);
   },
 
   // see unit tests for helper8 function
   helper8(arr, element) {
-    return element;
+    let index = -1
+
+    /*for (const [i, e] of arr.entries()) {
+      if (e === element){
+        index = i
+        break
+      }
+    }*/
+
+    
+    arr.forEach((e, i) => {
+      if (e === element){
+        index = i
+        return false
+      }
+    })
+
+    return index
+
+    //return arr.indexOf(element);
   },
 
   // see unit tests for helper9 function
   helper9(array, value) {
-    return value;
+    return array.includes(value)
   },
 
   // see unit tests for helper10 function
   helper10(array, callback) {
-    return callback();
+    let len = 0
+
+    array.forEach(e => {
+      if (callback(e)){
+        len += 1
+      }
+    })
+
+    return len || undefined;
   },
 
   // see unit tests for helper11 function
@@ -89,20 +148,41 @@ const functions = {
 
 // see unit tests for helper14 function
   helper14(arr, separator) {
-    return [arr, separator];
+    return arr.join(separator);
   },
 
   // takes an array of numbers and returns the sum of all the numbers in the array using forEach.
   sumEachNumbers(numbers) {
-    return 0;
-  },
+    const sum = 0
+
+    const reducer = (cum, cur) => cum + cur 
+
+    return numbers.reduce(reducer, sum)
+
+    /*
+    const reducer = (cur) =>{sum + cur}  
+    
+    numbers.forEach(reducer)
+    */
+    },
 
   // takes an array of numbers, multiplies each number by 2, and returns the sum of even numbers.
   sumDoubledEvenNumbers(numbers) {
     // filter even number... num % 2 === 0
     // double numbers
     // sum
-    return 0;
+
+    let sum = 0
+
+    const reducer = (cur) => {
+      if(cur % 2 === 0){
+        sum = sum + cur * 2
+      }
+    }  
+
+    numbers.forEach(reducer)
+
+    return sum;
   },
 };
 

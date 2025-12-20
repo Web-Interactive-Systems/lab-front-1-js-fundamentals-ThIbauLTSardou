@@ -73,7 +73,7 @@ describe('Test of Event Vanilla js —lab1', () => {
     `;
     const parent = document.getElementById('parent');
     const child = document.getElementById('child');
-    const getCount = addClickWithBubbleListener(parent);
+    const getCount = addClickWithBubbleListener(parent, child);
     child.click();
     child.click();
     expect(getCount()).toBe(0);
